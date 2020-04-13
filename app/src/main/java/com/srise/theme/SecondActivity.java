@@ -37,6 +37,9 @@ public class SecondActivity extends ChangeableActivity {
                     String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "b.apk";
                     SkinUtil.getInstance().loadSkin(path);
                 }
+
+                SkinUtil.getInstance().setDynamicChangeToken(!SkinUtil.getInstance().isDynamicChangeToken());
+
             }
         });
     }
