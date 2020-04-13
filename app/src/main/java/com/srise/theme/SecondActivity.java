@@ -31,15 +31,7 @@ public class SecondActivity extends ChangeableActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (SkinUtil.getInstance().isDynamicChangeToken()) {
-                    SkinUtil.getInstance().loadSkin("default");
-                } else {
-                    String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "b.apk";
-                    SkinUtil.getInstance().loadSkin(path);
-                }
-
-                SkinUtil.getInstance().setDynamicChangeToken(!SkinUtil.getInstance().isDynamicChangeToken());
-
+                SkinUtil.getInstance().loadSkin();
             }
         });
     }

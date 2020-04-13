@@ -7,6 +7,7 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
@@ -37,14 +38,6 @@ public class SkinUtil {
 
     public void setDefaultChangeToken(boolean defaultChangeToken) {
         this.mDefaultChangeToken = defaultChangeToken;
-    }
-
-    public boolean isDynamicChangeToken() {
-        return mDynamicChangeToken;
-    }
-
-    public void setDynamicChangeToken(boolean dynamicChangeToken) {
-        this.mDynamicChangeToken = dynamicChangeToken;
     }
 
     private SkinUtil() {
@@ -90,6 +83,13 @@ public class SkinUtil {
 
     public Object getSkinAttr(String attrKey) {
         return mSkinAttrMap.get(attrKey);
+    }
+
+    public void loadSkin() {
+        String path = mDynamicChangeToken ? "default" :
+                Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "b.apk";
+
+        SkinUtil.getInstance().loadSkin(path);
     }
 
     public void loadSkin(String path) {
@@ -153,6 +153,8 @@ public class SkinUtil {
         } catch (Exception e) {
             Log.e(TAG, e.getMessage(), e);
         }
+
+        mDynamicChangeToken = !mDynamicChangeToken;
     }
 
     public void registerSkin(ISkinChange skinChange) {
