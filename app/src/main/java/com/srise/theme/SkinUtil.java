@@ -10,6 +10,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.util.Log;
 
+import com.srise.theme.view.MyConstraintLayout;
+import com.srise.theme.view.MyImageView;
+import com.srise.theme.view.MyTextView;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -63,11 +67,13 @@ public class SkinUtil {
         InputStream inputStream = null;
 
         try {
-            inputStream = assetManager.open("drawable.png");
+            inputStream = assetManager.open(MyImageView.ATTR_DRAWABLE + ".png");
             Drawable drawable = BitmapDrawable.createFromStream(inputStream, null);
-            mSkinAttrMap.put("text_color", mContext.getResources().getColor(R.color.txt_color, null));
-            mSkinAttrMap.put("drawable", drawable);
-            mSkinAttrMap.put("inner_drawable", mContext.getResources().getDrawable(R.drawable.inner_drawable, null));
+            mSkinAttrMap.put(MyTextView.ATTR_TEXT_COLOR, mContext.getResources().getColor(R.color.text_color, null));
+            mSkinAttrMap.put(MyTextView.ATTR_TEXT, "default");
+            mSkinAttrMap.put(MyImageView.ATTR_DRAWABLE, drawable);
+            mSkinAttrMap.put(MyImageView.ATTR_INNER_DRAWABLE, mContext.getResources().getDrawable(R.drawable.inner_drawable, null));
+            mSkinAttrMap.put(MyConstraintLayout.ATTR_BACKGROUND_COLOR, mContext.getResources().getColor(R.color.background_color, null));
         } catch (IOException e) {
             Log.e(TAG, e.getMessage(), e);
         } finally {
@@ -118,22 +124,27 @@ public class SkinUtil {
                     Class<?> clazz = dexClassLoader.loadClass(PackageInfo.packageName + ".R$string");
                     Field field = clazz.getDeclaredField("app_name");
                     int id = field.getInt(clazz);
-                    otherRes.getString(id);
+                    mSkinAttrMap.put(MyTextView.ATTR_TEXT, otherRes.getString(id));
 
                     clazz = dexClassLoader.loadClass(PackageInfo.packageName + ".R$color");
-                    field = clazz.getDeclaredField("text_color");
+                    field = clazz.getDeclaredField(MyTextView.ATTR_TEXT_COLOR);
                     id = field.getInt(clazz);
-                    mSkinAttrMap.put("text_color", otherRes.getColor(id, null));
+                    mSkinAttrMap.put(MyTextView.ATTR_TEXT_COLOR, otherRes.getColor(id, null));
 
                     clazz = dexClassLoader.loadClass(PackageInfo.packageName + ".R$drawable");
-                    field = clazz.getDeclaredField("inner_drawable");
+                    field = clazz.getDeclaredField(MyImageView.ATTR_INNER_DRAWABLE);
                     id = field.getInt(clazz);
-                    mSkinAttrMap.put("inner_drawable", otherRes.getDrawable(id, null));
+                    mSkinAttrMap.put(MyImageView.ATTR_INNER_DRAWABLE, otherRes.getDrawable(id, null));
 
                     assetManager = otherRes.getAssets();
-                    inputStream = assetManager.open("drawable.png");
+                    inputStream = assetManager.open(MyImageView.ATTR_DRAWABLE + ".png");
                     Drawable drawable = BitmapDrawable.createFromStream(inputStream, null);
-                    mSkinAttrMap.put("drawable", drawable);
+                    mSkinAttrMap.put(MyImageView.ATTR_DRAWABLE, drawable);
+
+                    clazz = dexClassLoader.loadClass(PackageInfo.packageName + ".R$color");
+                    field = clazz.getDeclaredField(MyConstraintLayout.ATTR_BACKGROUND_COLOR);
+                    id = field.getInt(clazz);
+                    mSkinAttrMap.put(MyConstraintLayout.ATTR_BACKGROUND_COLOR, otherRes.getColor(id, null));
                 } catch (IOException e) {
                     Log.e(TAG, e.getMessage(), e);
                 } finally {

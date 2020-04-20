@@ -12,6 +12,9 @@ import com.srise.theme.R;
 import com.srise.theme.SkinUtil;
 
 public class MyImageView extends AppCompatImageView {
+    public static final String ATTR_INNER_DRAWABLE = "inner_drawable";
+    public static final String ATTR_DRAWABLE = "drawable";
+
     public MyImageView(Context context) {
         this(context, null);
     }

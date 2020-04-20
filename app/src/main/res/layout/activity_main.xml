@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/bg_color"
+    android:background="?attr/t_bg_color"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
-        android:textColor="?attr/txt_color"
+        android:textColor="?attr/t_txt_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -48,31 +48,46 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn" />
 
-    <com.srise.theme.view.MyTextView
-        android:id="@+id/text_view"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="my text"
+    <com.srise.theme.view.MyConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:b_color="background_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/img_view_1"
-        app:t_color="text_color" />
+        app:layout_constraintRight_toRightOf="parent">
 
-    <com.srise.theme.view.MyImageView
-        android:id="@+id/img_view_1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:inner_drawable="inner_drawable"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/text_view"
-        app:layout_constraintRight_toLeftOf="@+id/img_view_2" />
+        <com.srise.theme.view.MyTextView
+            android:id="@+id/text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="my text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/img_view_1"
+            app:t_color="text_color"
+            app:my_text="text"/>
 
-    <com.srise.theme.view.MyImageView
-        android:id="@+id/img_view_2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:asset_drawable="drawable"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/img_view_1"
-        app:layout_constraintRight_toRightOf="parent" />
+        <com.srise.theme.view.MyImageView
+            android:id="@+id/img_view_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:inner_drawable="inner_drawable"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/text_view"
+            app:layout_constraintRight_toLeftOf="@+id/img_view_2" />
+
+        <com.srise.theme.view.MyImageView
+            android:id="@+id/img_view_2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:asset_drawable="drawable"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/img_view_1"
+            app:layout_constraintRight_toRightOf="parent" />
+    </com.srise.theme.view.MyConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,8 @@
 package com.srise.theme;
 
 import android.content.Intent;
-import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
-
-import java.io.File;
 
 public class MainActivity extends ChangeableActivity {
     private static final String TAG = "app:MainActivity";

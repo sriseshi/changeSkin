@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="txt_color" format="color" />
-    <attr name="bg_color" format="color" />
+    <attr name="t_txt_color" format="color" />
+    <attr name="t_bg_color" format="color" />
 
     <declare-styleable name="myAttr">
-        <attr name="t_color" format="string"/>
-        <attr name="inner_drawable" format="string"/>
-        <attr name="asset_drawable" format="string"/>
+        <attr name="my_text" format="string" />
+        <attr name="t_color" format="string" />
+        <attr name="b_color" format="string" />
+        <attr name="inner_drawable" format="string" />
+        <attr name="asset_drawable" format="string" />
     </declare-styleable>
 
-    <color name="txt_color">#FFBF00</color>
+    <color name="text_color">#FFBF00</color>
+    <color name="background_color">#FF0000</color>
 </resources>
